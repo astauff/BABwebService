@@ -5,7 +5,8 @@ namespace BABwebService.Repositories.EventRepos
 {
 	public interface IEventRepo
 	{
-		Task<IEnumerable<EventModel>> GetEvents(Guid guid); 
+		Task<IEnumerable<EventModel>> GetEvents(Guid guid);
+		Task<int> PostEvent(EventModel eventModel, Guid guid);
 	}
 }
 

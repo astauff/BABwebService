@@ -10,6 +10,7 @@ namespace BABwebService
 		public AutoMapping()
 		{
 			CreateMap<EventModel, EventDTO>();
+			CreateMap<EventDTO, EventModel>();
 		}
 	}
 }

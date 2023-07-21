@@ -38,6 +38,15 @@ namespace BABwebService.Services
 			}
 
         }
+
+        public async Task<int> PostEvent(EventDTO eventDTO, Guid guid)
+        {
+			EventModel eventModel = _mapper.Map<EventModel>(eventDTO);
+
+			var post = await _eventRepo.PostEvent(eventModel, guid);
+
+			return post;
+        }
     }
 }
 

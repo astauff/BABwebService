@@ -28,6 +28,27 @@ namespace BABwebService.Repositories.EventRepos
                 return events.ToList();
             }
         }
+
+        public async Task<int> PostEvent(EventModel eventModel, Guid guid)
+        {
+            var query = $"INSERT INTO [dbo].[eventInfo] VALUES ('{eventModel.eventName}', '{eventModel.eventDate}', '{eventModel.eventStart}', '{eventModel.eventEnd}', '{eventModel.groupEvent}', '{eventModel.groupMembers}');";
+
+            try
+            {
+                using (var connection = _dapperContext.CreateConnection())
+                {
+                    await connection.ExecuteAsync(query);
+                }
+
+                return 0;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                return 9;
+            }
+        }
     }
 }
 

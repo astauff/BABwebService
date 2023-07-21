@@ -25,13 +25,32 @@ namespace BABwebService.Controllers
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        [Route("Event")]
+        [Route("Events")]
         public async Task<IActionResult> GetEvents()
         {
             var guid = Guid.NewGuid();
             var response = await _eventService.GetMultiEvents(guid);
 
             if(response.ReturnCode == "0")
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return BadRequest(response);
+            }
+        }
+
+        [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [Route("EventCreator")]
+        public async Task<IActionResult> PostEvent(EventDTO eventDTO)
+        {
+            var guid = Guid.NewGuid();
+            var response = await _eventService.PostEvent(eventDTO, guid);
+
+            if(response == 0)
             {
                 return Ok(response);
             }
